@@ -1,0 +1,218 @@
+.detail-page {
+    min-height: calc(100vh - var(--navbar-height));
+    padding: var(--space-8) 0;
+}
+
+.detail-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-6);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.detail-back:hover {
+    color: var(--primary);
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+/* Image Gallery */
+.detail-gallery {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.detail-main-image {
+    width: 100%;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-50), var(--bg-dark));
+}
+
+.detail-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--bg-dark);
+}
+
+.detail-main-image .placeholder-icon {
+    font-size: 6rem;
+    opacity: 0.5;
+}
+
+.detail-thumbs {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    overflow-x: auto;
+}
+
+.detail-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+    transition: border-color var(--transition-fast);
+}
+
+.detail-thumb.active {
+    border-color: var(--primary);
+}
+
+.detail-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Detail Info */
+.detail-info {
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--space-8));
+}
+
+.detail-info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+}
+
+.detail-badges {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: var(--space-4);
+}
+
+.detail-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: var(--space-6);
+}
+
+.detail-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--divider);
+    white-space: pre-line;
+}
+
+.detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--divider);
+}
+
+.detail-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.detail-meta-label {
+    color: var(--text-tertiary);
+}
+
+.detail-meta-value {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Seller Card */
+.detail-seller {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.detail-seller-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--primary-50);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.detail-seller-info {
+    flex: 1;
+}
+
+.detail-seller-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+}
+
+.detail-seller-college {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+}
+
+.detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.detail-views {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-main-image {
+        height: 280px;
+    }
+
+    .detail-info {
+        position: static;
+    }
+
+    .detail-price {
+        font-size: 1.5rem;
+    }
+}
