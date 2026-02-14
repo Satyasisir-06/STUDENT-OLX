@@ -2,7 +2,7 @@
     "name": "campusswap-root",
     "private": true,
     "scripts": {
-        "build": "cd server && npm install",
-        "start": "cd server && npm start"
+        "build": "npm install --prefix server",
+        "start": "npm start --prefix server"
     }
 }
