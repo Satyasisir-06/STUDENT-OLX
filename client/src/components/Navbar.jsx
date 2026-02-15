@@ -96,7 +96,7 @@ export default function Navbar() {
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-brand">
-                    <span className="navbar-brand-icon">🔄</span>
+                    <img src="/logo.svg" alt="CampusSwap Logo" className="navbar-logo-icon" />
                     CampusSwap
                 </Link>
 

@@ -62,6 +62,7 @@ export default function Register() {
         <div className="auth-page">
             <div className="auth-container" style={{ maxWidth: '520px' }}>
                 <div className="auth-header">
+                    <img src="/logo.svg" alt="CampusSwap" className="auth-logo" style={{ width: '64px', height: '64px', marginBottom: '16px' }} />
                     <h1>Create your account</h1>
                     <p>Join CampusSwap and start exchanging</p>
                 </div>

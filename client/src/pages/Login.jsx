@@ -36,6 +36,7 @@ export default function Login() {
         <div className="auth-page">
             <div className="auth-container">
                 <div className="auth-header">
+                    <img src="/logo.svg" alt="CampusSwap" className="auth-logo" style={{ width: '64px', height: '64px', marginBottom: '16px' }} />
                     <h1>Welcome back</h1>
                     <p>Sign in to your CampusSwap account</p>
                 </div>
