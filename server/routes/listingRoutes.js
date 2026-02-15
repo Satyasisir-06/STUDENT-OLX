@@ -7,6 +7,7 @@ import {
     deleteListing,
     searchListings,
     getMyListings,
+    getCategoryCounts,
 } from '../controllers/listingController.js';
 import { protect } from '../middleware/auth.js';
 import upload, { compressImages } from '../middleware/upload.js';
@@ -14,6 +15,7 @@ import upload, { compressImages } from '../middleware/upload.js';
 const router = express.Router();
 
 // Public routes
+router.get('/categories/counts', getCategoryCounts);
 router.get('/', getListings);
 router.get('/search', searchListings);
 

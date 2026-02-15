@@ -223,3 +223,28 @@ export const getMyListings = async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 };
+
+// @desc    Get category counts
+// @route   GET /api/v1/listings/categories/counts
+export const getCategoryCounts = async (req, res) => {
+    try {
+        const categories = ['Books', 'Electronics', 'Stationery', 'Clothing', 'Hostel', 'Lab Equipment', 'Other'];
+        const counts = {};
+
+        // Run in parallel for performance
+        await Promise.all(categories.map(async (cat) => {
+            const snapshot = await listingsRef
+                .where('category', '==', cat)
+                .where('status', '==', 'active')
+                .count()
+                .get();
+
+            counts[cat] = snapshot.data().count;
+        }));
+
+        res.status(200).json({ success: true, counts });
+    } catch (error) {
+        console.error('getCategoryCounts error:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};

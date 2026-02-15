@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ListingCard from '../components/ListingCard';
 import './Home.css';
 
-const categories = [
+const initialCategories = [
     { icon: '📚', name: 'Books', count: 0 },
     { icon: '💻', name: 'Electronics', count: 0 },
     { icon: '✏️', name: 'Stationery', count: 0 },
@@ -34,6 +36,41 @@ const features = [
 
 export default function Home() {
     const { user } = useAuth();
+    const [categories, setCategories] = useState(initialCategories);
+    const [recentListings, setRecentListings] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch category counts
+                const countsResponse = await fetch(`${import.meta.env.VITE_SOCKET_URL}/api/v1/listings/categories/counts`);
+                const countsData = await countsResponse.json();
+
+                if (countsData.success) {
+                    setCategories(prev => prev.map(cat => ({
+                        ...cat,
+                        count: countsData.counts[cat.name] || 0
+                    })));
+                }
+
+                // Fetch recent listings
+                const listingsResponse = await fetch(`${import.meta.env.VITE_SOCKET_URL}/api/v1/listings?limit=4`);
+                const listingsData = await listingsResponse.json();
+
+                if (listingsData.success) {
+                    setRecentListings(listingsData.listings);
+                }
+
+            } catch (error) {
+                console.error('Error fetching home data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="home">
@@ -105,7 +142,7 @@ export default function Home() {
 
                     <div className="categories-grid">
                         {categories.map((cat) => (
-                            <Link key={cat.name} to="/listings" className="category-card">
+                            <Link key={cat.name} to={`/listings?category=${cat.name}`} className="category-card">
                                 <span className="category-icon">{cat.icon}</span>
                                 <div className="category-name">{cat.name}</div>
                                 <div className="category-count">{cat.count} items</div>
@@ -114,6 +151,35 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
+            {/* Recent Listings - New Section */}
+            {recentListings.length > 0 && (
+                <section className="recent-listings-section" style={{ padding: '4rem 0', background: 'var(--bg-secondary)' }}>
+                    <div className="container">
+                        <div className="section-header" style={{ marginBottom: '3rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                <div>
+                                    <h2>New Arrivals</h2>
+                                    <p>Check out the latest items added by students</p>
+                                </div>
+                                <Link to="/listings" className="btn btn-link">
+                                    View All &rarr;
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '2rem'
+                        }}>
+                            {recentListings.map(listing => (
+                                <ListingCard key={listing._id} listing={listing} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Features */}
             <section className="features-section">
