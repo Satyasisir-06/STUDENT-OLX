@@ -1,27 +1,16 @@
-const CACHE_NAME = 'campusswap-v1';
-const urlsToCache = [
-    '/',
-    '/index.html',
-    '/static/js/main.chunk.js',
-    '/static/js/0.chunk.js',
-    '/static/js/bundle.js',
-    '/manifest.json',
-    '/favicon.ico'
-];
 
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
-    );
+// Service Worker has been removed/disabled to prevent caching issues.
+// We are now using vite-plugin-pwa which generates sw.js automatically.
+// If you see this file in the repo, it might be a remnant.
+// To unregister existing SW:
+self.addEventListener('install', () => {
+    self.skipWaiting();
 });
 
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) return response;
-                return fetch(event.request);
-            })
-    );
+self.addEventListener('activate', () => {
+    self.clients.matchAll({ type: 'window' }).then(windowClients => {
+        windowClients.forEach(windowClient => {
+            windowClient.navigate(windowClient.url);
+        });
+    });
 });
