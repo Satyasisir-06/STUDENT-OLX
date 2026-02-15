@@ -29,17 +29,14 @@ export default function Listings() {
     const fetchListings = useCallback(async (page = 1) => {
         setLoading(true);
         try {
-            let url;
-            if (search.trim()) {
-                url = `${API}/search?q=${encodeURIComponent(search)}&page=${page}&limit=12`;
-            } else {
-                const params = new URLSearchParams({ page, limit: 12 });
-                if (category !== 'all') params.set('category', category);
-                if (sort === 'price-asc') params.set('sort', 'price-asc');
-                if (sort === 'price-desc') params.set('sort', 'price-desc');
-                if (sort === 'popular') params.set('sort', 'popular');
-                url = `${API}?${params}`;
-            }
+            const params = new URLSearchParams({ page, limit: 12 });
+            if (search.trim()) params.set('search', search.trim());
+            if (category !== 'all') params.set('category', category);
+            if (sort === 'price-asc') params.set('sort', 'price-asc');
+            if (sort === 'price-desc') params.set('sort', 'price-desc');
+            if (sort === 'popular') params.set('sort', 'popular');
+
+            const url = `${API}?${params}`;
 
             const res = await fetch(url);
             const data = await res.json();
