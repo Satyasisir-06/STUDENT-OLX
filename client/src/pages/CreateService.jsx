@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './CreateListing.css'; // reuse create-listing styles
 
-const API = 'http://localhost:5000/api/v1/services';
+const API = `${import.meta.env.VITE_API_URL}/services`;
 
 const serviceCategories = [
     { value: 'assignment', label: 'Assignment Help' },

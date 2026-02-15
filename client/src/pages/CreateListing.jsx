@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './CreateListing.css';
 
-const API = 'http://localhost:5000/api/v1/listings';
+const API = `${import.meta.env.VITE_API_URL}/listings`;
 
 const categories = [
     { value: 'books', label: 'Books & Textbooks' },

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ReportModal.css';
 
-const API = 'http://localhost:5000/api/v1/reports';
+const API = `${import.meta.env.VITE_API_URL}/reports`;
 
 export default function ReportModal({ isOpen, onClose, targetType, targetId }) {
     const [reason, setReason] = useState('');

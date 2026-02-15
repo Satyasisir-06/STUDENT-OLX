@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import ReportModal from '../components/ReportModal';
 import './ListingDetail.css'; // and some custom styles
 
-const API = 'http://localhost:5000/api/v1/services';
+const API = `${import.meta.env.VITE_API_URL}/services`;
 
 const serviceCategories = {
     assignment: '📝 Assignment Help',

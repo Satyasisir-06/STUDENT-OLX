@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Services.css';
 
-const API = 'http://localhost:5000/api/v1/services';
+const API = `${import.meta.env.VITE_API_URL}/services`;
 
 const serviceCategories = [
     { value: 'all', label: 'All' },

@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import ListingCard from '../components/ListingCard';
 import './Profile.css';
 
-const API = 'http://localhost:5000/api/v1';
+const API = import.meta.env.VITE_API_URL;
 
 export default function Profile() {
     const { id } = useParams();

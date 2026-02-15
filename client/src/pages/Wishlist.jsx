@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import ListingCard from '../components/ListingCard';
 
-const API = 'http://localhost:5000/api/v1/wishlist';
+const API = `${import.meta.env.VITE_API_URL}/wishlist`;
 
 export default function Wishlist() {
     const { user } = useAuth();

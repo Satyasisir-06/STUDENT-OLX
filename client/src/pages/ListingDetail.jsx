@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import './ListingDetail.css';
 import ReportModal from '../components/ReportModal';
 
-const API = 'http://localhost:5000/api/v1/listings';
+const API = `${import.meta.env.VITE_API_URL}/listings`;
 
 const categoryLabels = {
     books: '📚 Books',
@@ -116,7 +116,7 @@ export default function ListingDetail() {
                         <div className="detail-main-image">
                             {images.length > 0 ? (
                                 <img
-                                    src={`http://localhost:5000${images[selectedImage]}`}
+                                    src={`${import.meta.env.VITE_SOCKET_URL}${images[selectedImage]}`}
                                     alt={listing.title}
                                 />
                             ) : (
@@ -133,7 +133,7 @@ export default function ListingDetail() {
                                         className={`detail-thumb ${selectedImage === i ? 'active' : ''}`}
                                         onClick={() => setSelectedImage(i)}
                                     >
-                                        <img src={`http://localhost:5000${img}`} alt={`${listing.title} ${i + 1}`} />
+                                        <img src={`${import.meta.env.VITE_SOCKET_URL}${img}`} alt={`${listing.title} ${i + 1}`} />
                                     </div>
                                 ))}
                             </div>

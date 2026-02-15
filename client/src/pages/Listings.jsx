@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import ListingCard from '../components/ListingCard';
 import './Listings.css';
 
-const API = 'http://localhost:5000/api/v1/listings';
+const API = `${import.meta.env.VITE_API_URL}/listings`;
 
 const categories = [
     { value: 'all', label: 'All' },

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Admin.css';
 
-const API = 'http://localhost:5000/api/v1';
+const API = import.meta.env.VITE_API_URL;
 
 export default function Admin() {
     const { user } = useAuth();

@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 
-const API = 'http://localhost:5000/api/v1';
+const API = import.meta.env.VITE_API_URL;
 
 export default function Navbar() {
     const { user, logout } = useAuth();

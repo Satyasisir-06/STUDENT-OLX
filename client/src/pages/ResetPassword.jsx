@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-const API = 'http://localhost:5000/api/v1';
+const API = import.meta.env.VITE_API_URL;
 
 export default function ResetPassword() {
     const { token } = useParams();

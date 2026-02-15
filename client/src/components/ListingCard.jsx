@@ -20,7 +20,7 @@ const conditionLabels = {
 
 export default function ListingCard({ listing }) {
     const imageUrl = listing.images && listing.images.length > 0
-        ? `http://localhost:5000${listing.images[0]}`
+        ? `${import.meta.env.VITE_SOCKET_URL}${listing.images[0]}`
         : null;
 
     const timeAgo = (date) => {

@@ -4,8 +4,8 @@ import { io } from 'socket.io-client';
 import { useAuth } from '../context/AuthContext';
 import './Chat.css';
 
-const API = 'http://localhost:5000/api/v1/messages';
-const SOCKET_URL = 'http://localhost:5000';
+const API = `${import.meta.env.VITE_API_URL}/messages`;
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
 export default function Chat() {
     const { user } = useAuth();
@@ -284,7 +284,7 @@ export default function Chat() {
                         {activeConv.listing && (
                             <Link to={`/listing/${activeConv.listing._id}`} className="chat-listing-ref">
                                 {activeConv.listing.images?.[0] && (
-                                    <img src={`http://localhost:5000${activeConv.listing.images[0]}`} alt="" />
+                                    <img src={`${import.meta.env.VITE_SOCKET_URL}${activeConv.listing.images[0]}`} alt="" />
                                 )}
                                 <span>₹{activeConv.listing.price?.toLocaleString()}</span>
                             </Link>
